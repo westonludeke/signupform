@@ -17,9 +17,18 @@
   display: inline-block;
   width: 100px;
 }
+.form-group.credit-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  align-items: center;
+}
+.form-group.credit-card label {
+  width: 100%;
+}
 .form-group.credit-card input {
-  width: calc(100% / 4 - 20px);
-  margin-right: 10px;
+  width: 100%;
+  margin: 0;
 }
 .error-message {
   color: red;
@@ -143,8 +152,8 @@ input.error {
       <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
     </div>
     <div class="form-group credit-card">
-      <label for="credit-card">Credit Card:</label>
-      <span class="error-message" id="credit-card-error"></span>
+      <label for="credit-card">Credit Card:</label><br>
+      <span class="error-message" id="credit-card-error"></span><br>
       <input type="text" id="credit-card-1" name="credit-card-1">
       <input type="text" id="credit-card-2" name="credit-card-2">
       <input type="text" id="credit-card-3" name="credit-card-3">
