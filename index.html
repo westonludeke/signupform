@@ -178,6 +178,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitBtn = document.querySelector(".submit-btn");
   const form = document.getElementById("signupForm");
 
+  const creditCardInputs = document.querySelectorAll('input[name^="credit-card"]');
+    creditCardInputs.forEach(input => {
+      input.addEventListener('input', event => {
+        const inputText = event.target.value;
+        event.target.value = inputText.replace(/\D/g, '').substring(0, 4);
+      });
+    });
+
+
   // Add event listeners to form elements
   firstName.addEventListener("blur", validateFirstName);
   lastName.addEventListener("blur", validateLastName);
