@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Sign Up Form</title>
-  <h1>My Web App</h1>
   <!-- <link rel='stylesheet' href="styles.css"> -->
 <style>
 .form-group {
@@ -17,6 +16,10 @@
 .form-group label {
   display: inline-block;
   width: 100px;
+}
+.form-group.credit-card input {
+  width: calc(100% / 4 - 20px);
+  margin-right: 10px;
 }
 .error-message {
   color: red;
@@ -112,6 +115,7 @@ input.error {
 
 </head>
 <body>
+  <h1>My Web App</h1>
   <form novalidate id="signupForm">
     <div class="form-group">
       <label for="first-name">First Name:</label>
@@ -138,6 +142,14 @@ input.error {
       <span class="error-message" id="phone-error"></span>
       <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
     </div>
+    <div class="form-group credit-card">
+      <label for="credit-card">Credit Card:</label>
+      <span class="error-message" id="credit-card-error"></span>
+      <input type="text" id="credit-card-1" name="credit-card-1">
+      <input type="text" id="credit-card-2" name="credit-card-2">
+      <input type="text" id="credit-card-3" name="credit-card-3">
+      <input type="text" id="credit-card-4" name="credit-card-4">
+    </div>
     <button type="submit" class="submit-btn">Sign Up</button>
   </form>
   <div class="error-summary" id="error-summary"></div>
@@ -150,6 +162,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const email = document.getElementById("email");
   const password = document.getElementById("password");
   const phone = document.getElementById("phone");
+  const creditCard1 = document.getElementById("credit-card-1");
+  const creditCard2 = document.getElementById("credit-card-2");
+  const creditCard3 = document.getElementById("credit-card-3");
+  const creditCard4 = document.getElementById("credit-card-4");
   const submitBtn = document.querySelector(".submit-btn");
   const form = document.getElementById("signupForm");
 
@@ -159,6 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
   email.addEventListener("blur", validateEmail);
   password.addEventListener("blur", validatePassword);
   phone.addEventListener("blur", validatePhone);
+  creditCard.addEventListener("blur", validateCreditCard);
   firstName.addEventListener("keypress", function (e) {
     const regex = /^[a-zA-Z]+$/;
     if (!regex.test(e.key)) {
@@ -237,6 +254,19 @@ document.addEventListener("DOMContentLoaded", function () {
       setError(phone, "Please enter a valid US-style phone number (e.g. 123-456-7890)");
     } else {
       setSuccess(phone);
+    }
+  }
+
+  // Validate credit card
+  function validateCreditCard() {
+    const creditCardValue = creditCard1.value + creditCard2.value + creditCard3.value + creditCard4.value;
+
+    if (creditCardValue === "") {
+      setError(creditCard1, "Credit card number is required");
+    } else if (!/^\d{16}$/.test(creditCardValue)) {
+      setError(creditCard1, "Please enter a valid credit card number");
+    } else {
+      setSuccess(creditCard1);
     }
   }
 
