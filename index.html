@@ -185,8 +185,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Section #2 - Attach event listeners to form elements
-  firstName.addEventListener("blur", validateFirstName);
-  lastName.addEventListener("blur", validateLastName);
+  firstName.addEventListener("blur", function() { validateName(firstName) });
+  lastName.addEventListener("blur", function() { validateName(lastName) });
+  firstName.addEventListener("keypress", function (e) { validateName(firstName, e) });
+  lastName.addEventListener("keypress", function (e) { validateName(lastName, e) });
   email.addEventListener("blur", validateEmail);
   password.addEventListener("blur", validatePassword);
   phone.addEventListener("blur", validatePhone);
@@ -194,38 +196,18 @@ document.addEventListener("DOMContentLoaded", function () {
   creditCard2.addEventListener("blur", validateCreditCard);
   creditCard3.addEventListener("blur", validateCreditCard);
   creditCard4.addEventListener("blur", validateCreditCard);
-  firstName.addEventListener("keypress", function (e) {
-    validateFirstName(firstName, e);
-  });
-  lastName.addEventListener("keypress", function (e) {
-    validateLastName(lastName, e);
-  });
+  
   submitBtn.addEventListener("click", submitForm);
 
-
-  // Section #3 - Validate first name
-  function validateFirstName() {
-    const firstNameValue = firstName.value.trim();
-
-    if (firstNameValue === "") {
-      setError(firstName, "First name is required");
-    } else if (!/^[a-zA-Z ]+([-][a-zA-Z]+)*$/.test(firstNameValue)) {
-      setError(firstName, "First name should contain only letters");
+  // Section #3 -  Validate name
+  function validateName(input) {
+    const nameValue = input.value.trim();
+    if (nameValue === "") {
+      setError(input, `${input.id === "first-name" ? "First" : "Last"} name is required`);
+    } else if (!/^[a-zA-Z ]+([-][a-zA-Z]+)*$/.test(nameValue)) {
+      setError(input, `${input.id === "first-name" ? "First" : "Last"} name should contain only letters`);
     } else {
-      setSuccess(firstName);
-    }
-  }
-
-  // Section #4 - Validate last name
-  function validateLastName() {
-    const lastNameValue = lastName.value.trim();
-
-    if (lastNameValue === "") {
-      setError(lastName, "Last name is required");
-    } else if (!/^[a-zA-Z ]+([-][a-zA-Z]+)*$/.test(lastNameValue)) {
-      setError(lastName, "Last name should contain only letters"); 
-    } else {
-      setSuccess(lastName);
+      setSuccess(input);
     }
   }
 
