@@ -186,11 +186,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-
-  function validateNameInput(input, event) {
-    restrictInput(input, /^[a-zA-Z]+$/, event);
-  }
-
   // Attach event listeners to form elements
   firstName.addEventListener("blur", validateFirstName);
   lastName.addEventListener("blur", validateLastName);
@@ -202,10 +197,10 @@ document.addEventListener("DOMContentLoaded", function () {
   creditCard3.addEventListener("blur", validateCreditCard);
   creditCard4.addEventListener("blur", validateCreditCard);
   firstName.addEventListener("keypress", function (e) {
-    validateNameInput(firstName, e);
+    validateFirstName(firstName, e);
   });
   lastName.addEventListener("keypress", function (e) {
-    validateNameInput(lastName, e);
+    validateLastName(lastName, e);
   });
   submitBtn.addEventListener("click", submitForm);
 
