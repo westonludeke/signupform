@@ -312,12 +312,6 @@ document.addEventListener("DOMContentLoaded", function () {
       errorSummary.innerHTML = "Please fix the errors in the form before submitting.";
     }
   }
-
-  // Section #12 - Clear error summary when user starts correcting errors
-  form.addEventListener("input", function () {
-    const errorSummary = document.getElementById("errorSummary");
-    errorSummary.innerText = "";
-  });
 });  
 
 </script>
