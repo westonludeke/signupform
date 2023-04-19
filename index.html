@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Validate phone
   function validatePhone() {
     const phoneValue = phone.value.trim();
-    const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+    const phonePattern = /^(\(\d{3}\)|\d{3})[\s-]?\d{3}[\s-]?\d{4}$/;
 
     if (phoneValue === "") {
       setSuccess(phone);
