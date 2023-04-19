@@ -165,28 +165,26 @@ input.error {
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Get form elements
+  // Section #1 - Get form elements and credit card inputs
   const firstName = document.getElementById("first-name");
   const lastName = document.getElementById("last-name");
   const email = document.getElementById("email");
   const password = document.getElementById("password");
   const phone = document.getElementById("phone");
-  const creditCard1 = document.getElementById("credit-card-1");
-  const creditCard2 = document.getElementById("credit-card-2");
-  const creditCard3 = document.getElementById("credit-card-3");
-  const creditCard4 = document.getElementById("credit-card-4");
   const submitBtn = document.querySelector(".submit-btn");
   const form = document.getElementById("signupForm");
 
   const creditCardInputs = document.querySelectorAll('input[name^="credit-card"]');
-    creditCardInputs.forEach(input => {
-      input.addEventListener('input', event => {
-        const inputText = event.target.value;
-        event.target.value = inputText.replace(/\D/g, '').substring(0, 4);
-      });
-    });
+  creditCardInputs.forEach(input => {
+    input.addEventListener('input', handleCreditCardInput);
+  });
 
-  // Attach event listeners to form elements
+  function handleCreditCardInput(event) {
+    const inputText = event.target.value;
+    event.target.value = inputText.replace(/\D/g, '').substring(0, 4);
+  }
+
+  // Section #2 - Attach event listeners to form elements
   firstName.addEventListener("blur", validateFirstName);
   lastName.addEventListener("blur", validateLastName);
   email.addEventListener("blur", validateEmail);
@@ -205,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
   submitBtn.addEventListener("click", submitForm);
 
 
-  // Validate first name
+  // Section #3 - Validate first name
   function validateFirstName() {
     const firstNameValue = firstName.value.trim();
 
@@ -218,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Validate last name
+  // Section #4 - Validate last name
   function validateLastName() {
     const lastNameValue = lastName.value.trim();
 
@@ -231,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Validate email
+  // Section #5 - Validate email
   function validateEmail() {
     const emailValue = email.value.trim();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -245,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Validate password
+  // Section #6 - Validate password
   function validatePassword() {
     const passwordValue = password.value.trim();
 
@@ -258,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Validate phone
+  // Section #7 - Validate phone
   function validatePhone() {
     const phoneValue = phone.value.trim();
     const phonePattern = /^(\(\d{3}\)|\d{3})[\s-]?\d{3}[\s-]?\d{4}$/;
@@ -272,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Validate credit card
+  // Section #8 - Validate credit card
   function validateCreditCard() {
     const creditCardValue = creditCard1.value + creditCard2.value + creditCard3.value + creditCard4.value;
 
@@ -288,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Set error message and border for an input element
+  // Section #9 - Set error message and border for an input element
   function setError(input, message) {
     const parentElement = input.parentElement;
     const errorMessage = parentElement.querySelector(".error-message");
@@ -298,7 +296,7 @@ document.addEventListener("DOMContentLoaded", function () {
     input.classList.add("error");
   }
 
-  // Remove error message and border for an input element
+  // Section #10 - Remove error message and border for an input element
   function setSuccess(input) {
     const parentElement = input.parentElement;
     const errorMessage = parentElement.querySelector(".error-message");
@@ -308,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
     input.classList.remove("error");
   }
 
-  // Submit form and validate all form fields
+  // Section #11 - Submit form and validate all form fields
   function submitForm(e) {
     e.preventDefault(); // prevent form from submitting by default
 
@@ -331,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Clear error summary when user starts correcting errors
+  // Section #12 - Clear error summary when user starts correcting errors
   form.addEventListener("input", function () {
     const errorSummary = document.getElementById("errorSummary");
     errorSummary.innerText = "";
