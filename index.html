@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Validate email
   function validateEmail() {
     const emailValue = email.value.trim();
-    const emailPattern = /.+@.+\..+/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (emailValue === "") {
       setError(email, "Email is required");
