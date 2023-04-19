@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (firstNameValue === "") {
       setError(firstName, "First name is required");
-    } else if (!/^[a-zA-Z]+$/.test(firstNameValue)) {
+    } else if (!/^[a-zA-Z ]+([-][a-zA-Z]+)*$/.test(firstNameValue)) {
       setError(firstName, "First name should contain only letters");
     } else {
       setSuccess(firstName);
@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (lastNameValue === "") {
       setError(lastName, "Last name is required");
-    } else if (!/^[a-zA-Z]+$/.test(lastNameValue)) {
+    } else if (!/^[a-zA-Z ]+([-][a-zA-Z]+)*$/.test(lastNameValue)) {
       setError(lastName, "Last name should contain only letters"); 
     } else {
       setSuccess(lastName);
