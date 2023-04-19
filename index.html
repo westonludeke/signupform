@@ -197,7 +197,10 @@ document.addEventListener("DOMContentLoaded", function () {
   email.addEventListener("blur", validateEmail);
   password.addEventListener("blur", validatePassword);
   phone.addEventListener("blur", validatePhone);
-  creditCard.addEventListener("blur", validateCreditCard);
+  creditCard1.addEventListener("blur", validateCreditCard);
+  creditCard2.addEventListener("blur", validateCreditCard);
+  creditCard3.addEventListener("blur", validateCreditCard);
+  creditCard4.addEventListener("blur", validateCreditCard);
   firstName.addEventListener("keypress", function (e) {
     validateNameInput(firstName, e);
   });
@@ -284,6 +287,9 @@ document.addEventListener("DOMContentLoaded", function () {
       setError(creditCard1, "Please enter a valid credit card number");
     } else {
       setSuccess(creditCard1);
+      setSuccess(creditCard2);
+      setSuccess(creditCard3);
+      setSuccess(creditCard4);
     }
   }
 
